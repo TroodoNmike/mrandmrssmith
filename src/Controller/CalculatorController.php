@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CalculatorController extends AbstractController
 {
-    const SESSION_RESULT_KEY = 'result';
+    public const SESSION_RESULT_KEY = 'result';
 
     #[Route('/calculator', name: 'calculator')]
     public function index(Request $request): Response

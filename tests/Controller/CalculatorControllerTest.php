@@ -7,8 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CalculatorControllerTest extends WebTestCase
 {
-    const ENTRY_FIELD = 'calculator[entry]';
-    const RESULT_SELECTOR = 'h1.display-1';
+    public const ENTRY_FIELD = 'calculator[entry]';
+    public const RESULT_SELECTOR = 'h1.display-1';
 
     private KernelBrowser $client;
 
@@ -56,7 +56,6 @@ class CalculatorControllerTest extends WebTestCase
 
     public function values(): array
     {
-
         return [
             // adding (+)
             [['+', '+'], [2, 2], 4],
