@@ -5,7 +5,7 @@ Interview test
 
 `./reference/PHP Developer test.pdf`
 
-## Requirements
+## Web Server Requirements
 
 `PHP >=8.0.2`
 
@@ -13,11 +13,24 @@ Interview test
 
 `composer install`
 
+## Running Web Server
+
+
+```
+// for local environment use it with docker but running it with any web server would work
+docker-compose up
+
+// make sure php container is running
+docker-compose exec php symfony serve
+
+// http://localhost:8000/calculator to access application
+```
+
 ## Tests
 
-Running tests
+Running tests (if you dont have PHP 8 please use docker setup provided)
 
-`./vendor/bin/phpunit .`
+`./bin/phpunit .`
 
 ## Docker setup
 
@@ -29,6 +42,6 @@ Running tests
 docker-compose exec php composer install
 
 // To run tests execute (while running container)
-docker-compose exec php ./vendor/bin/phpunit .
+docker-compose exec php ./bin/phpunit
 ```
 
