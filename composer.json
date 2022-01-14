@@ -18,13 +18,17 @@
         "symfony/yaml": "6.0.*"
     },
     "require-dev": {
+        "symfony/browser-kit": "6.0.*",
+        "symfony/css-selector": "6.0.*",
+        "symfony/debug-bundle": "6.0.*",
         "symfony/maker-bundle": "^1.36",
+        "symfony/phpunit-bridge": "^6.0",
         "symfony/stopwatch": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"
     },
     "config": {
         "allow-plugins": {
-            "composer/package-versions-deprecated": true,
+            "compo.ser/package-versions-deprecated": true,
             "symfony/flex": true,
             "symfony/runtime": true
         },

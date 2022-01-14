@@ -4,30 +4,29 @@ namespace App\Entity;
 
 class Calculator
 {
-    private $first;
+    private float $entry = 0;
+    private float $result = 0;
 
-    private $second;
-
-    public function getFirst(): ?float
+    public function getEntry(): float
     {
-        return $this->first;
+        return $this->entry;
     }
 
-    public function setFirst(float $first): self
+    public function setEntry(float $entry): self
     {
-        $this->first = $first;
+        $this->entry = $entry;
 
         return $this;
     }
 
-    public function getSecond(): ?float
+    public function getResult(): float
     {
-        return $this->second;
+        return $this->result;
     }
 
-    public function setSecond(float $second): self
+    public function setResult(float $result): self
     {
-        $this->second = $second;
+        $this->result = $result;
 
         return $this;
     }
