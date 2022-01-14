@@ -15,9 +15,9 @@ Interview test
 
 ## Tests
 
-Running tests
+Running tests (if you dont have PHP 8 please use docker setup provided)
 
-`./vendor/bin/phpunit .`
+`./bin/phpunit .`
 
 ## Docker setup
 
@@ -29,6 +29,6 @@ Running tests
 docker-compose exec php composer install
 
 // To run tests execute (while running container)
-docker-compose exec php ./vendor/bin/phpunit .
+docker-compose exec php ./bin/phpunit
 ```
 
