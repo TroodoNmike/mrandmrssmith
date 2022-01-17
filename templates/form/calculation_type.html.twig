@@ -1,0 +1,10 @@
+{%- block choice_row -%}
+    {% for item in form.vars.choices %}
+        <button
+                type="submit"
+                class="btn btn-primary"
+                value="{{ item.value }}"
+                name="{{ form.vars.full_name }}"
+        >{{ item.value }}</button>
+    {% endfor %}
+{%- endblock choice_row -%}
