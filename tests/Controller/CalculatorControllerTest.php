@@ -84,6 +84,6 @@ class CalculatorControllerTest extends WebTestCase
         $form = $crawler->selectButton('/')->form();
         $this->client->click($form);
 
-        $this->assertSelectorTextContains('div', 'Something went wrong');
+        $this->assertSelectorTextContains('div', 'Cannot divide by 0');
     }
 }

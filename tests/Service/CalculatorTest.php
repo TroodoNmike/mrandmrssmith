@@ -2,7 +2,8 @@
 
 namespace App\Tests\Service;
 
-use App\Service\Calculate;
+use App\Exception\DivideByZeroException;
+use App\Service\Calculator;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
@@ -12,7 +13,7 @@ class CalculatorTest extends TestCase
      */
     public function testAdding($start, $numbers, $result)
     {
-        $calculator = new Calculate();
+        $calculator = new Calculator();
 
         foreach ($numbers as $number) {
             $start = $calculator->add($start, $number);
@@ -34,7 +35,7 @@ class CalculatorTest extends TestCase
      */
     public function testSubtract($start, $numbers, $result)
     {
-        $calculator = new Calculate();
+        $calculator = new Calculator();
 
         foreach ($numbers as $number) {
             $start = $calculator->subtract($start, $number);
@@ -58,7 +59,7 @@ class CalculatorTest extends TestCase
      */
     public function testMultiply($start, $numbers, $result)
     {
-        $calculator = new Calculate();
+        $calculator = new Calculator();
 
         foreach ($numbers as $number) {
             $start = $calculator->multiply($start, $number);
@@ -80,7 +81,7 @@ class CalculatorTest extends TestCase
      */
     public function testDivide($start, $numbers, $result)
     {
-        $calculator = new Calculate();
+        $calculator = new Calculator();
 
         foreach ($numbers as $number) {
             $start = $calculator->divide($start, $number);
@@ -98,4 +99,12 @@ class CalculatorTest extends TestCase
         ];
     }
 
+    public function testDivideByZero()
+    {
+        $this->expectException(DivideByZeroException::class);
+        $this->expectExceptionMessage('Cannot divide by 0');
+
+        $calculator = new Calculator();
+        $calculator->divide(1, 0);
+    }
 }

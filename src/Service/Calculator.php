@@ -2,9 +2,11 @@
 
 namespace App\Service;
 
-class Calculate
+use App\Exception\DivideByZeroException;
+
+class Calculator
 {
-    public const ALLOWED_CALCULATIONS = ['+', '-', '*', '/'];
+    public const CALCULATIONS_TYPES = ['+', '-', '*', '/'];
 
     public function add(float $digit1, float $digit2): float
     {
@@ -23,7 +25,11 @@ class Calculate
 
     public function divide(float $arg1, float $arg2): float
     {
-        return $arg1 / $arg2;
+        try {
+            return $arg1 / $arg2;
+        } catch (\DivisionByZeroError $e){
+            throw new DivideByZeroException('Cannot divide by 0');
+        }
     }
 
     public function calculate(float $arg1, float $arg2, string $type): float
