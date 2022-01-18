@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Calculator;
+use App\Service\Calculate;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -13,6 +14,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CalculatorType extends AbstractType
 {
+    public function __construct(private Calculate $calculate)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -21,35 +26,19 @@ class CalculatorType extends AbstractType
                 'attr' => ['class' => 'text-end'],
             ])
             ->add('calculationType', ChoiceType::class, [
-                'choices'  => [
-                    0 => '+',
-                    1 => '-',
-                    2 => '*',
-                    3 => '/',
-                ],
+                'choices' =>
+                    Calculate::ALLOWED_CALCULATIONS
+                ,
                 'mapped' => false
-            ])
-        ;
+            ]);
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             /** @var Calculator $calculator */
             $calculator = $event->getData();
-            $type = $event->getForm()->get('calculationType');
+            $calculationType = $event->getForm()->get('calculationType')->getData();
 
-            switch ($type->getData()) {
-                case '+':
-                    $calculator->setResult($calculator->getResult() + $calculator->getEntry());
-                    break;
-                case '-':
-                    $calculator->setResult($calculator->getResult() - $calculator->getEntry());
-                    break;
-                case '*':
-                    $calculator->setResult($calculator->getResult() * $calculator->getEntry());
-                    break;
-                case '/':
-                    $calculator->setResult($calculator->getResult() / $calculator->getEntry());
-                    break;
-            }
+            $result = $this->calculate->calculate($calculator->getResult(), $calculator->getEntry(), $calculationType);
+            $calculator->setResult($result);
         });
     }
 
