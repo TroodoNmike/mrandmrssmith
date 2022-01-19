@@ -32,7 +32,7 @@ class CalculatorControllerTest extends WebTestCase
         $this->assertCount(4, $crawler->filter('button[name="calculator[calculationType]"]'));
 
         $this->assertSelectorTextContains('a[role="button"]', 'Reset');
-        $this->assertSelectorTextContains(self::RESULT_SELECTOR, 0);
+        $this->assertSelectorTextContains(self::RESULT_SELECTOR, "0");
         $this->assertResponseIsSuccessful();
     }
 

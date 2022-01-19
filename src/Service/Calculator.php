@@ -47,5 +47,4 @@ class Calculator
 
         throw new \Exception('Calculation Not supported');
     }
-
 }

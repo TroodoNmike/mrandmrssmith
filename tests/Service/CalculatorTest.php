@@ -9,9 +9,10 @@ use PHPUnit\Framework\TestCase;
 class CalculatorTest extends TestCase
 {
     /**
+     * @param array<int> $numbers
      * @dataProvider adding
      */
-    public function testAdding($start, $numbers, $result)
+    public function testAdding(int $start, array $numbers, float $result): void
     {
         $calculator = new Calculator();
 
@@ -22,7 +23,7 @@ class CalculatorTest extends TestCase
         $this->assertEquals($result, $start);
     }
 
-    public function adding()
+    public function adding(): array
     {
         return [
             [0, [0, 1, 9], 10],
@@ -33,7 +34,7 @@ class CalculatorTest extends TestCase
     /**
      * @dataProvider subtract
      */
-    public function testSubtract($start, $numbers, $result)
+    public function testSubtract(int $start, array $numbers, float $result): void
     {
         $calculator = new Calculator();
 
@@ -57,7 +58,7 @@ class CalculatorTest extends TestCase
     /**
      * @dataProvider multiply
      */
-    public function testMultiply($start, $numbers, $result)
+    public function testMultiply(int $start, array $numbers, float $result): void
     {
         $calculator = new Calculator();
 
@@ -79,7 +80,7 @@ class CalculatorTest extends TestCase
     /**
      * @dataProvider divide
      */
-    public function testDivide($start, $numbers, $result)
+    public function testDivide(int $start, array $numbers, float $result): void
     {
         $calculator = new Calculator();
 
@@ -99,7 +100,7 @@ class CalculatorTest extends TestCase
         ];
     }
 
-    public function testDivideByZero()
+    public function testDivideByZero(): void
     {
         $this->expectException(DivideByZeroException::class);
         $this->expectExceptionMessage('Cannot divide by 0');

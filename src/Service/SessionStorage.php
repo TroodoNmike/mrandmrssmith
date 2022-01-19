@@ -19,7 +19,7 @@ class SessionStorage implements StorageInterface
 
     public function get(): float
     {
-        return $this->session->get(self::SESSION_RESULT_KEY, self::DEFAULT_RESULT);
+        return floatval($this->session->get(self::SESSION_RESULT_KEY, self::DEFAULT_RESULT));
     }
 
     public function save(float $result): void

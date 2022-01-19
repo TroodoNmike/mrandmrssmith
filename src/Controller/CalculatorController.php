@@ -24,10 +24,10 @@ class CalculatorController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entry = $form->get('entry');
-            $calculationType = $form->get('calculationType')->getData();
+            $calculationType = strval($form->get('calculationType')->getData());
 
             try {
-                $result = $calculate->calculate($result, $entry->getData(), $calculationType);
+                $result = $calculate->calculate($result, floatval($entry->getData()), $calculationType);
                 $storage->save($result);
             } catch (\Exception $e) {
                 $entry->addError(new FormError($e->getMessage()));
